@@ -1,0 +1,31 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        concurrency: 4
+        max-concurrency: 8
+        retry:
+          initial-interval: 5000
+          max-attempts: 3
+          enabled: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    date-format: yyyy-MM-dd
+
+# message queues specific configs for billing-microservice
+billing-microservice:
+  exchange.name: billing-microservice-exchange
+  queue.name: billing-microservice-queue
+  routing.key: billing-microservice-key
+
+server:
+  port: 9094
